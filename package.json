@@ -1,0 +1,31 @@
+{
+  "name": "webpack5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve",
+    "build:test": "node webpack/core/index.js mode=production helloName=juntao"
+  },
+  "sideEffects": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.7",
+    "@babel/generator": "^7.17.7",
+    "@babel/parser": "^7.17.7",
+    "@babel/traverse": "^7.17.3",
+    "@babel/types": "^7.17.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^4.5.1",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.13.0",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

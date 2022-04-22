@@ -1,4 +1,4 @@
 require('./inner3.js')
 
-console.log('这里是inner')
+console.log('here is inner')
 const a = 'juntao.chen';

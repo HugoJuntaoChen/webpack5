@@ -9,3 +9,6 @@ $ npm run build
 $ npm run build:test
 ```
 
+## how to check?
+- according to webpack.config.js output
+- check output folder `index.html` & `main.js`

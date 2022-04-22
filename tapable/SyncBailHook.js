@@ -13,7 +13,6 @@ hook.tap('flag2', (arg1, arg2, arg3) => {
     console.log('flag2:', arg1, arg2, arg3);
 });
 
-// 调用事件并传递执行参数
 hook.call('19Qingfeng', 'wang', 'haoyu');
 // 打印结果
 // flag1: 19Qingfeng wang haoyu

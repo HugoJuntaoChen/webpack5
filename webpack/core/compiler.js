@@ -23,8 +23,9 @@ class Compiler {
             done: new AsyncSeriesHook(['stats']),
             // not show in the webpack document, but appears in the source code
             afterDone: new SyncHook(["stats"]),
-            // 
+            // hook will be called 
             failed: new SyncHook(['reason'])
+            // ...
         };
         // init compilation hash 
         this.compilationHash = 1;
@@ -52,7 +53,9 @@ class Compiler {
     }
     onCompile(callback) {
         // new Compilation
-        const params = {};
+        const params = {
+            //...createModuleFactory, createContextFactory
+        };
         const compilation = this.newCompilation(params);
         const onCompiled = () => {
             //  ...
@@ -70,13 +73,13 @@ class Compiler {
     }
     newCompilation(params) {
         // ... do something before new Compilation
-        //...createModuleFactory, createContextFactory
         const compilation = new Compilation(this);
         // create compilation
         this.hooks.compilation.call(compilation, params);
         this.compilation = compilation;
         return compilation;
     }
+    // output file
     emitAssets(compilation, callback) {
         // ...
         this.hooks.emit.callAsync(compilation, err => {

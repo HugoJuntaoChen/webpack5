@@ -1,4 +1,4 @@
 node_modules
 
 
-.dist1/main.js
+.dist1/*.js

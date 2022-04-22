@@ -1,10 +1,7 @@
 const { AsyncSeriesHook } = require('tapable');
-
 // 初始化同步钩子
 const hook = new AsyncSeriesHook(['arg1', 'arg2', 'arg3']);
-
 console.time('timer');
-
 // 注册事件
 hook.tapAsync('flag1', (arg1, arg2, arg3, callback) => {
     console.log('flag1:', arg1, arg2, arg3);
@@ -13,7 +10,6 @@ hook.tapAsync('flag1', (arg1, arg2, arg3, callback) => {
         callback(1);
     }, 1000);
 });
-
 hook.tapPromise('flag2', (arg1, arg2, arg3) => {
     console.log('flag2:', arg1, arg2, arg3);
     // tapPromise返回Promise
@@ -23,7 +19,6 @@ hook.tapPromise('flag2', (arg1, arg2, arg3) => {
         }, 1000);
     });
 });
-
 // 调用事件并传递执行参数
 hook.callAsync('19Qingfeng', 'wang', 'haoyu', (err) => {
     console.log(err);

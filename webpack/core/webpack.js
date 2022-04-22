@@ -1,4 +1,4 @@
-const Compiler = require('./complier');
+const Compiler = require('./compiler');
 // 实现webpack
 function webpack(options) {
     // 合并参数 得到合并后的参数 mergeOptions
@@ -11,7 +11,6 @@ function webpack(options) {
 }
 // 合并参数
 function _mergeOptions(options) {
-    console.log(process.argv.slice(2));
     const shellOptions = process.argv.slice(2).reduce((option, argv) => {
         // argv -> --mode=production
         const [key, value] = argv.split('=');
@@ -21,7 +20,6 @@ function _mergeOptions(options) {
         return option;
     }, {});
     const finalOptions = { ...options, ...shellOptions };
-    console.log(finalOptions);
     return finalOptions;
 }
 

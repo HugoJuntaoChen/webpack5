@@ -38,9 +38,9 @@ module.exports = {
     },
     plugins: [
         // new HtmlWebpackPlugin(),
+        // new DonePlugin1(),
         new DonePlugin1(),
-        new DonePlugin(),
-        new PluginA(),
-        new PluginB()
+        // new PluginA(),
+        // new PluginB()
     ]
 }

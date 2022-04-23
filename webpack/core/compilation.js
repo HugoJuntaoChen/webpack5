@@ -6,16 +6,22 @@ const parser = require('@babel/parser');
 const traverse = require('@babel/traverse').default;
 const generator = require('@babel/generator').default;
 const t = require('@babel/types');
-const { getSourceCode, tryExtensions, toUnixPath } = require('../utils')
+const { getSourceCode, tryExtensions } = require('../utils')
+
+const EntryPlugin = require('./plugins/EntryPlugin')
+
 class Compilation {
 
     constructor(compiler) {
+        compiler.compilation = this;
         // root path
         this.rootPath = compiler.options.context;
         this.compiler = compiler;
         this.hash = compiler.compilationHash++;
         this.options = compiler.options;
         this.hooks = {
+            // use EntryPlugin to handle entryOptions
+            addEntry: new SyncHook(["entry", "options"]),
             // Triggered before a module build has started, can be used to modify the module
             buildModule: new SyncHook(["module"]),
             // Executed when a module has been built successfully
@@ -29,9 +35,9 @@ class Compilation {
             // Executed when chunks has been built successfully
             afterChunks: new SyncHook(["chunks"]),
             // ...
-            // optimize
+            // optimize hooks
             // ...
-            // assets
+            // assets hooks
             // ...
         };
 
@@ -42,7 +48,15 @@ class Compilation {
         this.chunks = new Set();
 
         this.assets = new Set();
+
+        this._loadPlugin(this.compiler);
     }
+    // register default plugins
+    _loadPlugin(compiler) {
+        const entryPlugin = new EntryPlugin();
+        entryPlugin.apply(compiler);
+    }
+
 
     start(callback) {
         this.getEntry();
@@ -53,22 +67,11 @@ class Compilation {
     }
 
     getEntry() {
-        let entry = Object.create(null);
+        const entry = Object.create(null);
         const { entry: optionsEntry } = this.options;
-        if (typeof optionsEntry === 'string') {
-            entry['main'] = optionsEntry;
-        } else {
-            entry = optionsEntry;
-        }
-        // Turn entry into an absolute path
-        Object.keys(entry).forEach((key) => {
-            const value = entry[key];
-            if (!path.isAbsolute(value)) {
-                // When converting to an absolute path, the unified path separator is /
-                entry[key] = toUnixPath(path.join(this.rootPath, value));
-            }
-        });
-        this.addModuleTree(entry);
+        this.hooks.addEntry.call(entry, optionsEntry);
+        // entryPlugins will handle this optionsEntry
+        this.addModuleTree(this.entry);
     }
 
     // Collect modules from every single entry

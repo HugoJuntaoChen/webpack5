@@ -6,7 +6,7 @@ function webpack(options) {
 
     const compiler = new Compiler(mergeOptions)
 
-    _loadPlugin(options.plugins, compiler);
+    loadCustomPlugin(options.plugins, compiler);
     return compiler
 }
 
@@ -23,7 +23,7 @@ function _mergeOptions(options) {
     return finalOptions;
 }
 
-function _loadPlugin(plugins, compiler) {
+function loadCustomPlugin(plugins, compiler) {
     if (plugins && Array.isArray(plugins)) {
         plugins.forEach((plugin) => {
             plugin.apply(compiler);

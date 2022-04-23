@@ -1,4 +1,4 @@
-class DonePlugin1 {
+class CustomPlugin {
     apply(compiler) {
         //
         compiler.hooks.done.tapAsync('Plugin Done', (stats, cb) => {
@@ -8,4 +8,4 @@ class DonePlugin1 {
     }
 }
 
-module.exports = DonePlugin1;
+module.exports = CustomPlugin;

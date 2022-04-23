@@ -76,7 +76,7 @@ class Compiler {
         const compilation = new Compilation(this);
         // create compilation
         this.hooks.compilation.call(compilation, params);
-        this.compilation = compilation;
+        // this.compilation = compilation;
         return compilation;
     }
     // output file

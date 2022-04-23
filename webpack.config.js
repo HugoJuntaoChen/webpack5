@@ -1,10 +1,7 @@
 const path = require('path');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const DonePlugin = require('./webpack/plugins/donePlugin')
-const DonePlugin1 = require('./webpack/plugins/donePlugin1')
-const PluginA = require('./webpack/plugins/pluginA')
-const PluginB = require('./webpack/plugins/pluginB')
+const CustomPlugin = require('./webpack/plugins/CustomPlugin')
 
 module.exports = {
     // mode: 'development',
@@ -37,10 +34,6 @@ module.exports = {
         ],
     },
     plugins: [
-        // new HtmlWebpackPlugin(),
-        // new DonePlugin1(),
-        new DonePlugin1(),
-        // new PluginA(),
-        // new PluginB()
+        new CustomPlugin(),
     ]
 }

@@ -1,11 +1,11 @@
 const Compiler = require('./compiler');
 
 function webpack(options) {
-    // mergeOptions
+    // step 1 mergeOptions
     const mergeOptions = _mergeOptions(options);
-
+    // step 2 create compiler
     const compiler = new Compiler(mergeOptions)
-
+    // step 3 Register with our plugins
     loadCustomPlugin(options.plugins, compiler);
     return compiler
 }

@@ -29,6 +29,7 @@ class Compiler {
         };
         // init compilation hash 
         this.compilationHash = 1;
+        // ...
     }
     // config watch mode
     watch(watchOptions) {
@@ -47,7 +48,9 @@ class Compiler {
 
         this.hooks.beforeRun.callAsync(this, err => {
             if (err) finalCallback(err);
-            // this.hooks.run.callAsync(this);
+            this.hooks.run.callAsync(this, err => {
+                if (err) finalCallback(err);
+            });
         });
         this.onCompile(finalCallback);
     }

@@ -3,6 +3,7 @@ const { toUnixPath } = require('../../utils')
 class EntryPlugin {
     apply(compiler) {
         compiler.compilation.hooks.addEntry.tap('EntryPlugin', (entry, optionsEntry) => {
+            // check whether it is single entry or multiple entry
             if (typeof optionsEntry === 'string') {
                 entry['main'] = optionsEntry;
             } else {

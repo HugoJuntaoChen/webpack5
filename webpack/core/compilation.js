@@ -194,7 +194,6 @@ class Compilation {
             // Add any compiled dependent module objects to the modules object
             this.modules.add(depModule);
         });
-        console.log(module);
         return module;
     }
 

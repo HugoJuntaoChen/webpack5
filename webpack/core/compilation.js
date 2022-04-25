@@ -178,6 +178,7 @@ class Compilation {
                         this.modules.forEach((value) => {
                             if (value.id === moduleId) {
                                 value.name.push(moduleName);
+                                this.handleDependencyEntryName(value, moduleName);
                             }
                         });
                     }
@@ -196,7 +197,19 @@ class Compilation {
         });
         return module;
     }
-
+    // update module entryName
+    handleDependencyEntryName(module, entryName) {
+        if (module.dependencies && module.dependencies.size) {
+            module.dependencies.forEach(mid => {
+                this.modules.forEach(m => {
+                    if (m.id === mid) {
+                        m.name.push(entryName);
+                        this.handleDependencyEntryName(m, entryName);
+                    }
+                })
+            })
+        }
+    }
     finish(callback) {
         // ...
         this.hooks.finishModules.callAsync(this.modules, err => {

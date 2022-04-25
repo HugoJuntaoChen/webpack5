@@ -2,6 +2,13 @@
   (() => {
     var __webpack_modules__ = {
       
+          './src/inner3.js': (module) => {
+            console.log('here is inner3');
+const a = 'juntao.chen';
+console.log('loader2');
+console.log('loader1');
+      }
+        ,
           './src/inner.js': (module) => {
             __webpack_require__("./src/inner3.js");
 

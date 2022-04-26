@@ -8,4 +8,8 @@ $ npm run build
 # run demo wepack
 $ npm run build:test
 ```
+### role
+![avatar](./img/role.png)
 
+### workFlow
+![avatar](./img/workflow.png)

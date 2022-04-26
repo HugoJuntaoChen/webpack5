@@ -1,17 +1,16 @@
-const Compiler = require('./complier');
-// 实现webpack
+const Compiler = require('./compiler');
+
 function webpack(options) {
-    // 合并参数 得到合并后的参数 mergeOptions
+    // step 1 mergeOptions
     const mergeOptions = _mergeOptions(options);
-    // 创建compiler对象
+    // step 2 create compiler
     const compiler = new Compiler(mergeOptions)
-    // 注册plugins
-    _loadPlugin(options.plugins, compiler);
+    // step 3 Register with our plugins
+    loadCustomPlugin(options.plugins, compiler);
     return compiler
 }
-// 合并参数
+
 function _mergeOptions(options) {
-    console.log(process.argv.slice(2));
     const shellOptions = process.argv.slice(2).reduce((option, argv) => {
         // argv -> --mode=production
         const [key, value] = argv.split('=');
@@ -21,12 +20,10 @@ function _mergeOptions(options) {
         return option;
     }, {});
     const finalOptions = { ...options, ...shellOptions };
-    console.log(finalOptions);
     return finalOptions;
 }
 
-// 加载插件函数
-function _loadPlugin(plugins, compiler) {
+function loadCustomPlugin(plugins, compiler) {
     if (plugins && Array.isArray(plugins)) {
         plugins.forEach((plugin) => {
             plugin.apply(compiler);

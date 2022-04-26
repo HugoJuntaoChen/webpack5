@@ -1,19 +1,16 @@
 const path = require('path');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const DonePlugin = require('./webpack/plugins/donePlugin')
-const DonePlugin1 = require('./webpack/plugins/donePlugin1')
-const PluginA = require('./webpack/plugins/pluginA')
-const PluginB = require('./webpack/plugins/pluginB')
+const CustomPlugin = require('./webpack/plugins/CustomPlugin')
 
 module.exports = {
     // mode: 'development',
     mode: 'production',
-    // devtool: 'source-map',
-    // 基础目录，绝对路径，用于从配置中解析入口点(entry point)和 加载器(loader)。
-    // 换而言之entry和loader的所有相对路径都是相对于这个路径而言的
     context: process.cwd(),
-    entry: './src/index.js',
+    entry: {
+        entry1: './src/index.js',
+        entry2: './src/index2.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist1'),
         filename: '[name].js'
@@ -37,10 +34,6 @@ module.exports = {
         ],
     },
     plugins: [
-        // new HtmlWebpackPlugin(),
-        new DonePlugin1(),
-        new DonePlugin(),
-        new PluginA(),
-        new PluginB()
+        new CustomPlugin(),
     ]
 }

@@ -1,6 +1,5 @@
-// loader本质上就是一个函数，接受原始内容，返回转换后的内容。
+// loader is essentially a function that accepts the original content and returns the transformed content.
 function loader1(sourceCode) {
-    console.log('join loader1');
     return sourceCode + '\n console.log(\'loader1\')';
 }
 

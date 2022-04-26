@@ -3,7 +3,7 @@
     var __webpack_modules__ = {
       
           './src/inner3.js': (module) => {
-            console.log('这里是inner3');
+            console.log('here is inner3');
 const a = 'juntao.chen';
 console.log('loader2');
 console.log('loader1');
@@ -12,16 +12,7 @@ console.log('loader1');
           './src/inner.js': (module) => {
             __webpack_require__("./src/inner3.js");
 
-console.log('这里是inner');
-const a = 'juntao.chen';
-console.log('loader2');
-console.log('loader1');
-      }
-        ,
-          './src/inner2.js': (module) => {
-            __webpack_require__("./src/inner3.js");
-
-console.log('这里是inner2');
+console.log('here is inner');
 const a = 'juntao.chen';
 console.log('loader2');
 console.log('loader1');
@@ -57,9 +48,7 @@ console.log('loader1');
     (() => {
       __webpack_require__("./src/inner.js");
 
-__webpack_require__("./src/inner2.js");
-
-console.log('here is index.js');
+console.log('here is index2.js');
 console.log('loader2');
 console.log('loader1');
     })();

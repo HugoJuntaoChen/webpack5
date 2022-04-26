@@ -108,7 +108,6 @@ class Compilation {
         this.handleLoader(modulePath);
         // 3. Call babel for module compilation to get the final module object
         const newModule = this.handleWebpackCompilation(moduleName, modulePath, module);
-
         this.hooks.succeedModule.call(newModule);
         // 4. return module
         return newModule;
@@ -240,6 +239,7 @@ class Compilation {
             };
             this.chunks.add(chunk);
         })
+        console.log(this.chunks);
         this.hooks.afterChunks.call(this.chunks)
     }
     // emit this.chunks

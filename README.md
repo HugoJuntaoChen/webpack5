@@ -8,7 +8,8 @@ $ npm run build
 # run demo wepack
 $ npm run build:test
 ```
+### role
+![avatar](./img/role.png)
 
-## how to check?
-- according to webpack.config.js output
-- check output folder `index.html` & `main.js`
+### workFlow
+![avatar](./img/workflow.png)

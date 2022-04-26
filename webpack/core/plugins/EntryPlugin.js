@@ -18,6 +18,7 @@ class EntryPlugin {
                 }
             });
             compiler.compilation.entry = entry;
+            console.log(entry);
         });
     }
 }
